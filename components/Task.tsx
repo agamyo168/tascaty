@@ -1,3 +1,4 @@
+import Feather from "@expo/vector-icons/Feather";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
@@ -5,20 +6,19 @@ import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 
 interface TaskProps {
   text: string;
+  description?: string;
   done?: boolean;
   onPress?: () => void;
   handleDelete?: () => void;
 }
 const Task = ({ text, done, onPress, handleDelete }: TaskProps) => {
   const styles = StyleSheet.create({
-    item: {
+    itemWrapper: {
       padding: 15,
       borderRadius: 20,
       backgroundColor: "#313244",
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "space-between",
       marginBottom: 20,
+      justifyContent: "center",
     },
     itemLeft: {
       flexDirection: "row",
@@ -30,7 +30,18 @@ const Task = ({ text, done, onPress, handleDelete }: TaskProps) => {
       fontWeight: 600,
       textDecorationLine: done ? "line-through" : "none",
       fontSize: 16,
+    },
+    itemDescription: {
+      color: "#bac2de",
+      fontWeight: 600,
+      fontSize: 12,
+    },
+    itemTextWrapper: {
+      flexDirection: "column",
+      overflow: "scroll", //TODO: Should I change this to ellipses better?
+
       maxWidth: "80%",
+      maxHeight: 90,
     },
     circle: {
       borderColor: "#838390",
@@ -41,40 +52,51 @@ const Task = ({ text, done, onPress, handleDelete }: TaskProps) => {
       padding: 13,
     },
     deleteAction: {
-      backgroundColor: "#f38ba8", // Catppuccin Mocha Red for destruction
-      justifyContent: "center",
-      alignItems: "flex-end",
+      backgroundColor: "#f38ba8",
       borderRadius: 20,
-      marginVertical: 20, // Match marginBottom from item style
-      marginTop: 0,
+      padding: 20,
       marginBottom: 20,
-      marginLeft: 10, // Separates the item and the swipe action visually
+      marginRight: 15,
     },
     deleteText: {
-      color: "#1E1E2E", // Use a very dark color (Base) for high contrast on Red
-      padding: 20,
-      fontWeight: "bold",
+      color: "#1E1E2E",
     },
   });
   const renderRightActions = () => {
     return (
-      <View style={{ width: 100 }}>
+      <View
+        style={{ width: 40, justifyContent: "center", alignItems: "center" }}
+      >
         {/* Use RectButton for a good native button feel */}
         <RectButton style={styles.deleteAction} onPress={handleDelete}>
-          <Text style={styles.deleteText}>Delete</Text>
+          <Feather name="trash" style={styles.deleteText} />
         </RectButton>
       </View>
     );
   };
   return (
-    <Swipeable renderRightActions={renderRightActions}>
-      <View style={styles.item}>
+    <Swipeable
+      renderRightActions={renderRightActions}
+      overshootRight={false}
+      containerStyle={{
+        padding: 15,
+        borderRadius: 20,
+      }}
+    >
+      <View style={styles.itemWrapper}>
         <View style={styles.itemLeft}>
           <TouchableOpacity
             style={styles.circle}
             onPress={onPress}
           ></TouchableOpacity>
-          <Text style={styles.itemText}>{text}</Text>
+          <View style={styles.itemTextWrapper}>
+            <Text style={styles.itemText}>{text}</Text>
+            <Text style={styles.itemDescription}>
+              This is a long text This is a long text This is a long text This
+              is a long text This is a long text This is a long text This is a
+              long text This is a long text This is a long text
+            </Text>
+          </View>
         </View>
       </View>
     </Swipeable>

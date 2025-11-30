@@ -15,7 +15,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 interface TaskItem {
   title: string;
 }
-const Home = () => {
+const HomeScreen = () => {
   const [task, setTask] = useState<TaskItem>({ title: "" });
   const [taskItems, setTaskItems] = useState<TaskItem[]>([]);
   const [completedTasks, setCompletedTasks] = useState<TaskItem[]>([
@@ -39,7 +39,9 @@ const Home = () => {
   };
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}></View>
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>Page title</Text>
+      </View>
       <ScrollView style={styles.scrollContainer}>
         <View style={styles.tasksWrapper}>
           <Text style={styles.sectionTitle}>Todo ({taskItems.length})</Text>
@@ -92,6 +94,8 @@ const Home = () => {
 const styles = StyleSheet.create({
   header: {
     paddingBottom: 60,
+    paddingTop: 10,
+    alignItems: "center",
   },
   scrollContainer: {
     marginBottom: 60,
@@ -111,6 +115,10 @@ const styles = StyleSheet.create({
   writeTaskWrapper: {
     position: "absolute",
     bottom: 0,
+    padding: 10,
+    borderTopEndRadius: 15,
+    borderTopStartRadius: 15,
+
     backgroundColor: "#313244",
     width: "100%",
     flexDirection: "row",
@@ -137,6 +145,11 @@ const styles = StyleSheet.create({
   },
   items: {},
   //TODO: Make section title a header/navbar instead
+  headerTitle: {
+    color: "#cdd6f4",
+    fontSize: 24,
+    fontWeight: "bold",
+  },
   sectionTitle: {
     color: "#cdd6f4",
     fontSize: 24,
@@ -145,4 +158,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default HomeScreen;
