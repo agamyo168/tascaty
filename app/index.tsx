@@ -28,12 +28,12 @@ const HomeScreen = () => {
     { title: "Completed" },
   ]);
   const handleCompleteTask = (index: number) => {
-    setCompletedTasks([...completedTasks, taskItems[index]]);
+    setCompletedTasks([taskItems[index], ...completedTasks]);
     taskItems.splice(index, 1);
     setTaskItems(taskItems);
   };
   const handleIncompleteTask = (index: number) => {
-    setTaskItems([...taskItems, completedTasks[index]]);
+    setTaskItems([completedTasks[index], ...taskItems]);
     completedTasks.splice(index, 1);
     setCompletedTasks(completedTasks);
   };
