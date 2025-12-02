@@ -1,9 +1,11 @@
-import { BottomSheetView } from "@gorhom/bottom-sheet";
+import { BottomSheetTextInput, BottomSheetView } from "@gorhom/bottom-sheet";
 import React, { useState } from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
+
 type Props = {
   onAddTask: (task: { title: string; description: string }) => void;
 };
+
 export default function AddTaskContent({ onAddTask }: Props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -18,7 +20,7 @@ export default function AddTaskContent({ onAddTask }: Props) {
   return (
     <BottomSheetView style={styles.container}>
       <Text style={styles.label}>Title</Text>
-      <TextInput
+      <BottomSheetTextInput
         placeholder="Task title"
         placeholderTextColor="#a6adc8"
         value={title}
@@ -27,20 +29,18 @@ export default function AddTaskContent({ onAddTask }: Props) {
       />
 
       <Text style={styles.label}>Description</Text>
-      <TextInput
+      <BottomSheetTextInput
         placeholder="Task description"
         placeholderTextColor="#a6adc8"
         value={description}
         onChangeText={setDescription}
         multiline
-        style={[styles.input, { height: 80 }]}
+        style={[styles.input]}
       />
 
-      <View style={styles.buttonContainer}>
-        <Text style={styles.buttonText} onPress={handleAdd}>
-          Add Task
-        </Text>
-      </View>
+      <TouchableOpacity style={styles.buttonContainer} onPress={handleAdd}>
+        <Text style={styles.buttonText}>Add Task</Text>
+      </TouchableOpacity>
     </BottomSheetView>
   );
 }
@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
     padding: 18,
     backgroundColor: "#1e1e2e",
     flex: 1,
+    height: "100%", //TODO: look for a different way to color the entire background.
   },
 
   label: {
@@ -60,6 +61,8 @@ const styles = StyleSheet.create({
   },
 
   input: {
+    alignSelf: "stretch",
+    marginHorizontal: 12,
     backgroundColor: "#313244",
     color: "#cdd6f4",
     borderRadius: 12,
