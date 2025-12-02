@@ -24,7 +24,7 @@ export interface TaskItem {
 }
 const HomeScreen = () => {
   const { tasks, fetchTasks, toggleStatus, addTask, deleteTask } = useTask();
-  const snapPoints = useMemo(() => ["25%", "50%", "70%"], []);
+  const snapPoints = useMemo(() => [], []);
   const bottomSheetRef = useRef<BottomSheet>(null);
   const [addedVisible, setAddedVisible] = useState(false);
   const [completedVisible, setCompletedVisible] = useState(false);
