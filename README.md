@@ -18,4 +18,5 @@
 ## Third-party libraries:
 
 - @gorhom/bottom-sheet: for bottom sheet.
-- drizze orm: for sqlite database.
+- drizzle-orm: for sqlite database.
+- react-native-paper: for snackbar.

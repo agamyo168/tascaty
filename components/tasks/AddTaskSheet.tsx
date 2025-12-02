@@ -48,9 +48,7 @@ export default function AddTaskContent({ onAddTask }: Props) {
 const styles = StyleSheet.create({
   container: {
     padding: 18,
-    backgroundColor: "#1e1e2e",
-    flex: 1,
-    height: "100%", //TODO: look for a different way to color the entire background.
+    backgroundColor: "transparent",
   },
 
   label: {

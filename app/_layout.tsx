@@ -5,6 +5,7 @@ import { Slot } from "expo-router";
 import { SQLiteProvider, openDatabaseSync } from "expo-sqlite";
 import { Suspense } from "react";
 import { ActivityIndicator } from "react-native";
+import { Provider as PaperProvider } from "react-native-paper";
 
 export const DATABASE_NAME = "tasks";
 
@@ -20,7 +21,9 @@ export default function RootLayout() {
         options={{ enableChangeListener: true }}
         useSuspense
       >
-        <Slot />
+        <PaperProvider>
+          <Slot />
+        </PaperProvider>
       </SQLiteProvider>
     </Suspense>
   );

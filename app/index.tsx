@@ -4,7 +4,7 @@ import * as schema from "@/db/schema";
 import useTask from "@/hooks/tasks/useTask";
 import Feather from "@expo/vector-icons/Feather";
 import BottomSheet from "@gorhom/bottom-sheet";
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   Keyboard,
   StyleSheet,
@@ -16,6 +16,7 @@ import {
   GestureHandlerRootView,
   ScrollView,
 } from "react-native-gesture-handler";
+import { Snackbar } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 export interface TaskItem {
   title: string;
@@ -25,6 +26,10 @@ const HomeScreen = () => {
   const { tasks, fetchTasks, toggleStatus, addTask, deleteTask } = useTask();
   const snapPoints = useMemo(() => ["25%", "50%", "70%"], []);
   const bottomSheetRef = useRef<BottomSheet>(null);
+  const [addedVisible, setAddedVisible] = useState(false);
+  const [completedVisible, setCompletedVisible] = useState(false);
+  const [lastCompletedTask, setLastCompletedTask] =
+    useState<schema.Task | null>(null);
   useEffect(() => {
     fetchTasks();
   }, []);
@@ -36,12 +41,17 @@ const HomeScreen = () => {
   const handleCompleteTask = (task: schema.Task) => {
     toggleStatus(task);
     fetchTasks();
+    if (task.done === 0) {
+      setLastCompletedTask(task);
+      setCompletedVisible(true);
+    }
   };
 
   const handleAddTask = (task: { title: string; description: string }) => {
     Keyboard.dismiss();
     addTask({ title: task.title, description: task.description });
     bottomSheetRef.current?.close();
+    setAddedVisible(true);
   };
   const styles = StyleSheet.create({
     scrollContainer: {
@@ -77,6 +87,39 @@ const HomeScreen = () => {
   });
   return (
     <SafeAreaView style={styles.container}>
+      <Snackbar
+        visible={addedVisible}
+        style={{ backgroundColor: "#cba6f7" }}
+        onDismiss={() => setAddedVisible(false)}
+        duration={2000}
+      >
+        <Text style={{ color: "#1e1e2e" }}>Task added</Text>
+      </Snackbar>
+      <Snackbar
+        visible={completedVisible}
+        style={{ backgroundColor: "#cba6f7" }}
+        onDismiss={() => setCompletedVisible(false)}
+      >
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <Text style={{ color: "#1e1e2e" }}>Task completed</Text>
+          <TouchableOpacity
+            onPress={() => {
+              console.log(lastCompletedTask);
+              if (lastCompletedTask) {
+                toggleStatus(lastCompletedTask);
+                setCompletedVisible(false);
+              }
+            }}
+          >
+            <Text> Undo</Text>
+          </TouchableOpacity>
+        </View>
+      </Snackbar>
       <GestureHandlerRootView>
         <ScrollView style={styles.scrollContainer}>
           <View style={styles.tasksWrapper}>
@@ -96,7 +139,6 @@ const HomeScreen = () => {
           <TouchableOpacity
             style={styles.addBtn}
             onPress={() => {
-              console.log("clicked");
               bottomSheetRef.current?.expand();
             }}
           >
