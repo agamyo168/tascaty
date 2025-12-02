@@ -1,8 +1,10 @@
 import AddTaskSheet from "@/components/tasks/AddTaskSheet";
 import Task from "@/components/tasks/Task";
+import * as schema from "@/db/schema";
+import useTask from "@/hooks/tasks/useTask";
 import Feather from "@expo/vector-icons/Feather";
 import BottomSheet from "@gorhom/bottom-sheet";
-import React, { useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import {
   Keyboard,
   StyleSheet,
@@ -20,28 +22,25 @@ export interface TaskItem {
   description?: string;
 }
 const HomeScreen = () => {
-  const [taskItems, setTaskItems] = useState<TaskItem[]>([]);
-  const [completedTasks, setCompletedTasks] = useState<TaskItem[]>([]);
-
+  const { tasks, fetchTasks, toggleStatus, addTask, deleteTask } = useTask();
   const snapPoints = useMemo(() => ["25%", "50%", "70%"], []);
   const bottomSheetRef = useRef<BottomSheet>(null);
-
-  // const handleRemoveTask = () => {};
-
-  const handleCompleteTask = (index: number) => {
-    setCompletedTasks([taskItems[index], ...completedTasks]);
-    taskItems.splice(index, 1);
-    setTaskItems(taskItems);
-  };
-  const handleIncompleteTask = (index: number) => {
-    setTaskItems([completedTasks[index], ...taskItems]);
-    completedTasks.splice(index, 1);
-    setCompletedTasks(completedTasks);
+  useEffect(() => {
+    fetchTasks();
+  }, []);
+  const handleRemoveTask = (task: schema.Task) => {
+    deleteTask(task);
+    fetchTasks();
   };
 
-  const addTask = (task: { title: string; description: string }) => {
+  const handleCompleteTask = (task: schema.Task) => {
+    toggleStatus(task);
+    fetchTasks();
+  };
+
+  const handleAddTask = (task: { title: string; description: string }) => {
     Keyboard.dismiss();
-    setTaskItems((prev) => [...prev, { ...task }]);
+    addTask({ title: task.title, description: task.description });
     bottomSheetRef.current?.close();
   };
   const styles = StyleSheet.create({
@@ -81,25 +80,14 @@ const HomeScreen = () => {
       <GestureHandlerRootView>
         <ScrollView style={styles.scrollContainer}>
           <View style={styles.tasksWrapper}>
-            <Text style={styles.sectionTitle}>Todo ({taskItems.length})</Text>
-            {taskItems.map((task, index) => (
+            <Text style={styles.sectionTitle}>Todo ({tasks.length})</Text>
+            {tasks.map((task) => (
               <Task
-                key={index}
+                key={task.id}
                 task={task}
-                onPress={() => handleCompleteTask(index)}
-              />
-            ))}
-          </View>
-          <View style={styles.tasksWrapper}>
-            <Text style={styles.sectionTitle}>
-              Completed ({completedTasks.length})
-            </Text>
-            {completedTasks.map((task, index) => (
-              <Task
-                key={index}
-                done
-                task={task}
-                onPress={() => handleIncompleteTask(index)}
+                handleDelete={() => handleRemoveTask(task)}
+                done={task.done}
+                onPress={() => handleCompleteTask(task)}
               />
             ))}
           </View>
@@ -124,7 +112,7 @@ const HomeScreen = () => {
           backgroundStyle={{ backgroundColor: "#181825" }}
           handleIndicatorStyle={{ backgroundColor: "#a6adc8" }}
         >
-          <AddTaskSheet onAddTask={addTask} />
+          <AddTaskSheet onAddTask={handleAddTask} />
         </BottomSheet>
       </GestureHandlerRootView>
     </SafeAreaView>

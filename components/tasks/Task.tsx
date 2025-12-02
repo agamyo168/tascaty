@@ -8,7 +8,7 @@ import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 interface TaskProps {
   task: TaskItem;
   description?: string;
-  done?: boolean;
+  done?: number;
   onPress?: () => void;
   handleDelete?: () => void;
 }
@@ -45,7 +45,7 @@ const Task = ({ task, done, onPress, handleDelete }: TaskProps) => {
     },
     circle: {
       borderColor: "#838390",
-      backgroundColor: done ? "#a6e3a1" : "",
+      backgroundColor: done ? "#a6e3a1" : "transparent",
       borderRadius: 100,
       borderWidth: 3,
       marginRight: 15,

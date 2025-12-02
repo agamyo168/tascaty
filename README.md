@@ -17,4 +17,5 @@
 
 ## Third-party libraries:
 
-- @gorhom/bottom-sheet
+- @gorhom/bottom-sheet: for bottom sheet.
+- drizze orm: for sqlite database.
