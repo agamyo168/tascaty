@@ -16,3 +16,5 @@
   incomplete tasks.
 
 ## Third-party libraries:
+
+- @gorhom/bottom-sheet
