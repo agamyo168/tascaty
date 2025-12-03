@@ -1,6 +1,6 @@
-import GlobalSnackbar from "@/components/common/GlobalSnackbar";
-import migrations from "@/drizzle/migrations";
-import { SnackbarProvider } from "@/hooks/useSnackbar";
+import GlobalSnackbar from "@/src/components/common/GlobalSnackbar";
+import migrations from "@/src/drizzle/migrations";
+import { SnackbarProvider } from "@/src/hooks/useSnackbar";
 import { drizzle } from "drizzle-orm/expo-sqlite";
 import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
 import { Slot } from "expo-router";

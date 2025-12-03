@@ -1,4 +1,4 @@
-import { useSnackbar } from "@/hooks/useSnackbar";
+import { useSnackbar } from "@/src/hooks/useSnackbar";
 import React from "react";
 import Snackbar from "./Snackbar";
 

@@ -1,8 +1,8 @@
-import AddTaskSheet from "@/components/tasks/AddTaskSheet";
-import Task from "@/components/tasks/Task";
-import * as schema from "@/db/schema";
-import useTask from "@/hooks/tasks/useTask";
-import { useSnackbar } from "@/hooks/useSnackbar";
+import AddTaskSheet from "@/src/components/tasks/AddTaskSheet";
+import Task from "@/src/components/tasks/Task";
+import * as schema from "@/src/db/schema";
+import useTask from "@/src/hooks/tasks/useTask";
+import { useSnackbar } from "@/src/hooks/useSnackbar";
 import Feather from "@expo/vector-icons/Feather";
 import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";

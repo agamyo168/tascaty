@@ -1,4 +1,4 @@
-import { TaskItem } from "@/app";
+import { TaskItem } from "@/src/app";
 import Feather from "@expo/vector-icons/Feather";
 import React, { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";

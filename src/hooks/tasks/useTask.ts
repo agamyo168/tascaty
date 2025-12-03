@@ -1,4 +1,4 @@
-import * as schema from "@/db/schema";
+import * as schema from "@/src/db/schema";
 import { asc, desc, eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/expo-sqlite";
 import { useSQLiteContext } from "expo-sqlite";
