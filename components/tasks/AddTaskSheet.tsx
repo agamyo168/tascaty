@@ -1,47 +1,74 @@
-import { BottomSheetTextInput, BottomSheetView } from "@gorhom/bottom-sheet";
-import React, { useState } from "react";
+import BottomSheet, {
+  BottomSheetTextInput,
+  BottomSheetView,
+} from "@gorhom/bottom-sheet";
+import React, { useMemo, useRef, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 type Props = {
   onAddTask: (task: { title: string; description: string }) => void;
+  toggleBottomSheet: () => void;
+  visible: boolean;
 };
 
-export default function AddTaskContent({ onAddTask }: Props) {
+export default function AddTaskContent({
+  onAddTask,
+  visible,
+  toggleBottomSheet,
+}: Props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-
+  const snapPoints = useMemo(() => [], []);
+  const bottomSheetRef = useRef<BottomSheet>(null);
   const handleAdd = () => {
     if (!title.trim()) return;
     onAddTask({ title, description });
     setTitle("");
     setDescription("");
+    toggleBottomSheet();
   };
 
   return (
-    <BottomSheetView style={styles.container}>
-      <Text style={styles.label}>Title</Text>
-      <BottomSheetTextInput
-        placeholder="Task title"
-        placeholderTextColor="#a6adc8"
-        value={title}
-        onChangeText={setTitle}
-        style={styles.input}
-      />
+    <BottomSheet
+      ref={bottomSheetRef}
+      snapPoints={snapPoints}
+      enablePanDownToClose={true}
+      onClose={toggleBottomSheet}
+      index={visible ? 0 : -1}
+      backgroundStyle={{ backgroundColor: "#181825" }}
+      handleIndicatorStyle={{ backgroundColor: "#a6adc8" }}
+    >
+      <BottomSheetView style={styles.container}>
+        <Text style={styles.label}>Title</Text>
+        <BottomSheetTextInput
+          placeholder="Task title"
+          placeholderTextColor="#a6adc8"
+          value={title}
+          onChangeText={setTitle}
+          style={styles.input}
+        />
 
-      <Text style={styles.label}>Description</Text>
-      <BottomSheetTextInput
-        placeholder="Task description"
-        placeholderTextColor="#a6adc8"
-        value={description}
-        onChangeText={setDescription}
-        multiline
-        style={[styles.input]}
-      />
+        <Text style={styles.label}>Description</Text>
+        <BottomSheetTextInput
+          placeholder="Task description"
+          placeholderTextColor="#a6adc8"
+          value={description}
+          onChangeText={setDescription}
+          multiline
+          style={[styles.input]}
+        />
 
-      <TouchableOpacity style={styles.buttonContainer} onPress={handleAdd}>
-        <Text style={styles.buttonText}>Add Task</Text>
-      </TouchableOpacity>
-    </BottomSheetView>
+        <TouchableOpacity
+          style={styles.buttonContainer}
+          onPress={() => {
+            handleAdd();
+            bottomSheetRef.current?.close();
+          }}
+        >
+          <Text style={styles.buttonText}>Add Task</Text>
+        </TouchableOpacity>
+      </BottomSheetView>
+    </BottomSheet>
   );
 }
 

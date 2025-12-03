@@ -4,7 +4,7 @@ import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
 import { Slot } from "expo-router";
 import { SQLiteProvider, openDatabaseSync } from "expo-sqlite";
 import { Suspense } from "react";
-import { ActivityIndicator } from "react-native";
+import { ActivityIndicator, StyleSheet, View } from "react-native";
 import { Provider as PaperProvider } from "react-native-paper";
 
 export const DATABASE_NAME = "tasks";
@@ -12,7 +12,11 @@ export const DATABASE_NAME = "tasks";
 export default function RootLayout() {
   const expoDb = openDatabaseSync(DATABASE_NAME);
   const db = drizzle(expoDb);
-  const { success, error } = useMigrations(db, migrations);
+  useMigrations(db, migrations);
+
+  const styles = StyleSheet.create({
+    container: { flex: 1 },
+  });
 
   return (
     <Suspense fallback={<ActivityIndicator size="large" />}>
@@ -22,7 +26,9 @@ export default function RootLayout() {
         useSuspense
       >
         <PaperProvider>
-          <Slot />
+          <View style={styles.container}>
+            <Slot />
+          </View>
         </PaperProvider>
       </SQLiteProvider>
     </Suspense>

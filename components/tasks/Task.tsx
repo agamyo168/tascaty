@@ -1,6 +1,6 @@
 import { TaskItem } from "@/app";
 import Feather from "@expo/vector-icons/Feather";
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
 import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
@@ -13,6 +13,7 @@ interface TaskProps {
   handleDelete?: () => void;
 }
 const Task = ({ task, done, onPress, handleDelete }: TaskProps) => {
+  const [expanded, setExpanded] = useState(false);
   const styles = StyleSheet.create({
     itemWrapper: {
       padding: 15,
@@ -36,8 +37,6 @@ const Task = ({ task, done, onPress, handleDelete }: TaskProps) => {
       color: "#bac2de",
       fontWeight: 600,
       fontSize: 12,
-      overflow: "scroll", //TODO: Should I change this to ellipses better?
-      maxHeight: 50,
     },
     itemTextWrapper: {
       flexDirection: "column",
@@ -90,8 +89,16 @@ const Task = ({ task, done, onPress, handleDelete }: TaskProps) => {
             onPress={onPress}
           ></TouchableOpacity>
           <View style={styles.itemTextWrapper}>
-            <Text style={styles.itemText}>{task.title}</Text>
-            <Text style={styles.itemDescription}>{task.description}</Text>
+            <TouchableOpacity onPress={() => setExpanded((e) => !e)}>
+              <Text style={styles.itemText}>{task.title}</Text>
+              <Text
+                style={styles.itemDescription}
+                numberOfLines={expanded ? undefined : 3}
+                ellipsizeMode="tail"
+              >
+                {task.description}
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
