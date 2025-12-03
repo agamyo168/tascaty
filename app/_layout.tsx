@@ -1,4 +1,6 @@
+import GlobalSnackbar from "@/components/common/GlobalSnackbar";
 import migrations from "@/drizzle/migrations";
+import { SnackbarProvider } from "@/hooks/useSnackbar";
 import { drizzle } from "drizzle-orm/expo-sqlite";
 import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
 import { Slot } from "expo-router";
@@ -26,9 +28,12 @@ export default function RootLayout() {
         useSuspense
       >
         <PaperProvider>
-          <View style={styles.container}>
-            <Slot />
-          </View>
+          <SnackbarProvider>
+            <View style={styles.container}>
+              <Slot />
+              <GlobalSnackbar />
+            </View>
+          </SnackbarProvider>
         </PaperProvider>
       </SQLiteProvider>
     </Suspense>

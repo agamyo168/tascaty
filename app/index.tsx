@@ -2,8 +2,8 @@ import AddTaskSheet from "@/components/tasks/AddTaskSheet";
 import Task from "@/components/tasks/Task";
 import * as schema from "@/db/schema";
 import useTask from "@/hooks/tasks/useTask";
+import { useSnackbar } from "@/hooks/useSnackbar";
 import Feather from "@expo/vector-icons/Feather";
-// no router needed here
 import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
 import {
@@ -18,7 +18,6 @@ import {
   GestureHandlerRootView,
   ScrollView,
 } from "react-native-gesture-handler";
-import { Snackbar } from "react-native-paper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export interface TaskItem {
@@ -30,11 +29,8 @@ const HomeScreen = () => {
   const { bottom } = useSafeAreaInsets();
   const router = useRouter();
   const { tasks, fetchTasks, toggleStatus, addTask, deleteTask } = useTask();
-  const [addedVisible, setAddedVisible] = useState(false);
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
-  const [completedVisible, setCompletedVisible] = useState(false);
-  const [lastCompletedTask, setLastCompletedTask] =
-    useState<schema.Task | null>(null);
+  const { showSnackbar } = useSnackbar();
   const [query, setQuery] = useState("");
 
   useEffect(() => {
@@ -43,6 +39,10 @@ const HomeScreen = () => {
 
   const handleRemoveTask = (task: schema.Task) => {
     deleteTask(task);
+    showSnackbar("Task removed", {
+      backgroundColor: "#f38ba8",
+      textColor: "#1e1e2e",
+    });
   };
 
   const toggleBottomSheet = () => {
@@ -52,15 +52,21 @@ const HomeScreen = () => {
   const handleCompleteTask = (task: schema.Task) => {
     toggleStatus(task);
     if (task.done === 0) {
-      setLastCompletedTask(task);
-      setCompletedVisible(true);
+      showSnackbar("Task completed", {
+        backgroundColor: "#cba6f7",
+        textColor: "#1e1e2e",
+      });
     }
   };
 
   const handleAddTask = (task: { title: string; description: string }) => {
     Keyboard.dismiss();
     addTask({ title: task.title, description: task.description });
-    setAddedVisible(true);
+    showSnackbar("Task added", {
+      duration: 2000,
+      backgroundColor: "#cba6f7",
+      textColor: "#1e1e2e",
+    });
   };
 
   const filtered = tasks.filter(
@@ -70,7 +76,6 @@ const HomeScreen = () => {
   );
   const todoTasks = filtered.filter((t) => t.done === 0);
   const completedTasks = filtered.filter((t) => t.done === 1);
-
   const formattedDate = new Date().toLocaleDateString(undefined, {
     year: "numeric",
     month: "long",
@@ -155,41 +160,6 @@ const HomeScreen = () => {
   });
   return (
     <View style={styles.container}>
-      {/* Snackbars */}
-      <Snackbar
-        visible={addedVisible}
-        style={{ backgroundColor: "#cba6f7" }}
-        onDismiss={() => setAddedVisible(false)}
-        duration={2000}
-      >
-        <Text style={{ color: "#1e1e2e" }}>Task added</Text>
-      </Snackbar>
-      <Snackbar
-        visible={completedVisible}
-        style={{ backgroundColor: "#cba6f7" }}
-        onDismiss={() => setCompletedVisible(false)}
-      >
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
-        >
-          <Text style={{ color: "#1e1e2e" }}>Task completed</Text>
-          <TouchableOpacity
-            onPress={() => {
-              console.log(lastCompletedTask);
-              if (lastCompletedTask) {
-                toggleStatus(lastCompletedTask);
-                setCompletedVisible(false);
-              }
-            }}
-          >
-            <Text> Undo</Text>
-          </TouchableOpacity>
-        </View>
-      </Snackbar>
-      {/* Header outside SafeArea to extend under status bar */}
       <View style={styles.header}>
         <Text style={styles.headerDate}>{formattedDate}</Text>
         <View style={styles.headerTitleRow}>
@@ -208,7 +178,6 @@ const HomeScreen = () => {
         />
       </View>
       <GestureHandlerRootView>
-        {/* Tasks */}
         <ScrollView contentContainerStyle={styles.scrollContainer}>
           <View style={styles.tasksWrapper}>
             <Text style={styles.sectionTitle}>Todo ({todoTasks.length})</Text>
