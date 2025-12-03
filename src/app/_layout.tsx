@@ -1,9 +1,12 @@
 import GlobalSnackbar from "@/src/components/common/GlobalSnackbar";
 import migrations from "@/src/drizzle/migrations";
 import { SnackbarProvider } from "@/src/hooks/useSnackbar";
+import "@/src/style/unistyles";
 import { drizzle } from "drizzle-orm/expo-sqlite";
 import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
 import { Slot } from "expo-router";
+import "expo-router/entry";
+
 import { SQLiteProvider, openDatabaseSync } from "expo-sqlite";
 import { Suspense } from "react";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
