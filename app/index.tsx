@@ -4,6 +4,7 @@ import * as schema from "@/db/schema";
 import useTask from "@/hooks/tasks/useTask";
 import Feather from "@expo/vector-icons/Feather";
 // no router needed here
+import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
 import {
   Keyboard,
@@ -18,7 +19,7 @@ import {
   ScrollView,
 } from "react-native-gesture-handler";
 import { Snackbar } from "react-native-paper";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export interface TaskItem {
   title: string;
@@ -26,6 +27,8 @@ export interface TaskItem {
 }
 
 const HomeScreen = () => {
+  const { bottom } = useSafeAreaInsets();
+  const router = useRouter();
   const { tasks, fetchTasks, toggleStatus, addTask, deleteTask } = useTask();
   const [addedVisible, setAddedVisible] = useState(false);
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
@@ -73,7 +76,83 @@ const HomeScreen = () => {
     month: "long",
     day: "2-digit",
   });
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: "#1e1e2e",
+      paddingBottom: bottom,
+    },
 
+    header: {
+      backgroundColor: "#6c4ab6",
+      paddingHorizontal: 20,
+      paddingTop: 72,
+      paddingBottom: 12,
+    },
+    headerDate: {
+      color: "#ede9fe",
+      opacity: 0.9,
+      fontSize: 14,
+      marginBottom: 6,
+    },
+    headerTitle: {
+      color: "#ffffff",
+      fontSize: 24,
+      fontWeight: "bold",
+      flex: 1,
+    },
+    headerTitleRow: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      width: "100%",
+    },
+    searchInput: {
+      alignSelf: "stretch",
+      marginHorizontal: 20,
+      backgroundColor: "#313244",
+      color: "#cdd6f4",
+      borderRadius: 12,
+      padding: 12,
+      fontSize: 16,
+      marginTop: 16,
+      borderWidth: 1,
+      borderColor: "#45475a",
+    },
+    scrollContainer: {
+      paddingBottom: 30,
+    },
+    tasksWrapper: {
+      paddingHorizontal: 20,
+      marginTop: 20,
+    },
+    sectionTitle: {
+      color: "#cdd6f4",
+      fontSize: 24,
+      fontWeight: "bold",
+      marginBottom: 20,
+    },
+    addBtnWrapper: {
+      position: "absolute",
+      right: 10,
+      bottom: 20,
+    },
+    addBtn: {
+      borderColor: "#838390",
+      backgroundColor: "#cba6f7",
+      borderRadius: 100,
+      paddingHorizontal: 12,
+      paddingVertical: 10,
+      width: 56,
+      height: 56,
+      alignItems: "center",
+      justifyContent: "center",
+      shadowColor: "#000",
+      shadowOpacity: 0.2,
+      shadowRadius: 6,
+      shadowOffset: { width: 0, height: 3 },
+    },
+  });
   return (
     <View style={styles.container}>
       {/* Snackbars */}
@@ -113,7 +192,12 @@ const HomeScreen = () => {
       {/* Header outside SafeArea to extend under status bar */}
       <View style={styles.header}>
         <Text style={styles.headerDate}>{formattedDate}</Text>
-        <Text style={styles.headerTitle}>My Todo List</Text>
+        <View style={styles.headerTitleRow}>
+          <Text style={styles.headerTitle}>My Todo List</Text>
+          <TouchableOpacity onPress={() => router.push("/settings")}>
+            <Feather name="settings" size={24} color="#ffffff" />
+          </TouchableOpacity>
+        </View>
         <TextInput
           placeholder="Search tasks..."
           placeholderTextColor="#a6adc8"
@@ -125,10 +209,7 @@ const HomeScreen = () => {
       </View>
       <GestureHandlerRootView>
         {/* Tasks */}
-        <ScrollView
-          style={styles.scrollContainer}
-          contentContainerStyle={{ paddingBottom: 160 }}
-        >
+        <ScrollView contentContainerStyle={styles.scrollContainer}>
           <View style={styles.tasksWrapper}>
             <Text style={styles.sectionTitle}>Todo ({todoTasks.length})</Text>
             {todoTasks.map((task) => (
@@ -166,84 +247,8 @@ const HomeScreen = () => {
           onAddTask={handleAddTask}
         />
       </GestureHandlerRootView>
-
-      <SafeAreaView />
     </View>
   );
 };
-const styles = StyleSheet.create({
-  scrollContainer: {},
-  tasksWrapper: {
-    paddingHorizontal: 20,
-    marginTop: 4,
-  },
-  searchInput: {
-    alignSelf: "stretch",
-    marginHorizontal: 20,
-    backgroundColor: "#313244",
-    color: "#cdd6f4",
-    borderRadius: 12,
-    padding: 12,
-    fontSize: 16,
-    marginTop: 16,
-    borderWidth: 1,
-    borderColor: "#45475a",
-  },
-  container: {
-    flex: 1,
-    backgroundColor: "#1e1e2e",
-  },
-  containerInner: {
-    flex: 1,
-  },
-  header: {
-    backgroundColor: "#6c4ab6",
-    paddingHorizontal: 20,
-    paddingTop: 72,
-    paddingBottom: 12,
-  },
-  headerDate: {
-    color: "#ede9fe",
-    opacity: 0.9,
-    fontSize: 14,
-    marginBottom: 6,
-  },
-  headerTitle: {
-    color: "#ffffff",
-    fontSize: 24,
-    fontWeight: "bold",
-  },
-  sectionTitle: {
-    color: "#cdd6f4",
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 20,
-  },
-  sectionSubTitle: {
-    color: "#bac2de",
-    fontSize: 14,
-    marginBottom: 12,
-  },
-  addBtnWrapper: {
-    position: "absolute",
-    right: 30,
-    bottom: 76,
-  },
-  addBtn: {
-    borderColor: "#838390",
-    backgroundColor: "#cba6f7",
-    borderRadius: 100,
-    paddingHorizontal: 12,
-    paddingVertical: 10,
-    width: 56,
-    height: 56,
-    alignItems: "center",
-    justifyContent: "center",
-    shadowColor: "#000",
-    shadowOpacity: 0.2,
-    shadowRadius: 6,
-    shadowOffset: { width: 0, height: 3 },
-  },
-});
 
 export default HomeScreen;
