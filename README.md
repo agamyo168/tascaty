@@ -29,79 +29,20 @@ Tascaty is a modern, cross-platform mobile application built with React Native a
 - **Future**: Supports adding more themes in the future.
 
 ### Splash screen
-
-<div style="display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px;">
-   <div style="flex: 1; min-width: 300px; text-align: center;">
-      <img
-      src="./assets/images/splash_light.png" 
-      alt="Splash Light Screenshot"
-      style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"
-      />
-      <p>
-    Splash Light
-      </p>
-   </div>
-   <div style="flex: 1; min-width: 300px; text-align: center;">
-      <img 
-      src="./assets/images/splash_dark.png"
-      alt="Splash Dark Screenshot"
-      style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"
-      />
-      <p>
-         Splash Dark
-      </p>
-   </div>
-</div>
+| Splash Light | Splash Dark |
+| :----------: | :---------: |
+| ![Splash Light Screenshot](./assets/images/splash_light.png) | ![Splash Dark Screenshot](./assets/images/splash_dark.png) |
 
 ### Home screen
 
-<div style="display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px;">
-   <div style="flex: 1; min-width: 300px; text-align: center;">
-      <img
-      src="./assets/images/home_light.png" 
-      alt="Home Screen Light"
-      style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"
-      />
-      <p>
-    Home Screen Light
-      </p>
-   </div>
-   <div style="flex: 1; min-width: 300px; text-align: center;">
-      <img 
-      src="./assets/images/home_dark.png"
-      alt="Home Screen Dark"
-      style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"
-      />
-      <p>
-         Home Screen Dark
-      </p>
-   </div>
-</div>
+| Home Screen Light | Home Screen Dark |
+| :---------------: | :--------------: |
+| ![Home Screen Light](./assets/images/home_light.png) | ![Home Screen Dark](./assets/images/home_dark.png) |
 
 ### Settings screen
-
-<div style="display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px;">
-   <div style="flex: 1; min-width: 300px; text-align: center;">
-      <img
-      src="./assets/images/settings_light.png" 
-      alt="Settings Screen Light"
-      style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"
-      />
-      <p>
-         Settings Screen Light
-      </p>
-   </div>
-   <div style="flex: 1; min-width: 300px; text-align: center;">
-      <img 
-      src="./assets/images/settings_dark.png"
-      alt="Settings Screen Dark"
-      style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"
-      />
-      <p>
-         Settings Screen Dark
-      </p>
-   </div>
-</div>
+| Settings Screen Light | Settings Screen Dark |
+| :-------------------: | :------------------: |
+| ![Settings Screen Light](./assets/images/settings_light.png) | ![Settings Screen Dark](./assets/images/settings_dark.png) |
 
 ## Preview:
 
@@ -191,7 +132,7 @@ src/
 
 ## Download:
 
-- [Android](https://drive.google.com/file/d/1sOW5GjUsfOjxiB5BvD69BdM_lj6M1vxA/view?usp=drivesdk)
+- [Android APK](https://drive.google.com/file/d/1sOW5GjUsfOjxiB5BvD69BdM_lj6M1vxA/view?usp=drivesdk)
 
 ## Acknowledgments
 
