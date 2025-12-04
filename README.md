@@ -49,16 +49,11 @@ Tascaty is a modern, cross-platform mobile application built with React Native a
    yarn install
    ```
 
-3. Start the development server:
+3. Run the app:
 
    ```bash
-   npx expo start
+   npx expo run:android
    ```
-
-4. Run on your device/emulator:
-   - Press `i` for iOS simulator
-   - Press `a` for Android emulator
-   - Scan the QR code with Expo Go app (on physical device)
 
 ## Screenshots
 
@@ -87,6 +82,7 @@ src/
 - **expo-sqlite**: SQLite database integration
 - **react-native-gesture-handler**: Native gestures
 - **react-native-safe-area-context**: Safe area handling
+- **react-native-splash-screen**: Splash screen
 
 ## Acknowledgments
 

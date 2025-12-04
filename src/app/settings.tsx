@@ -1,9 +1,11 @@
 import Feather from "@expo/vector-icons/Feather";
 import { useRouter } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { Button, Menu, Switch } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
+
 import {
   StyleSheet,
   UnistylesRuntime,
@@ -24,17 +26,21 @@ export default function SettingsScreen() {
 
   const onSwitchChange = (value: boolean) => {
     setIsDark(value);
-    value ? setDark() : setLight();
+    if (value) setDark();
+    else setLight();
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
+        <StatusBar
+          style={theme.colors.background === "#1e1e2e" ? "light" : "dark"}
+        />
         <TouchableOpacity onPress={() => router.back()} style={styles.backBtn}>
           <Feather
             name="arrow-left"
             size={20}
-            color={theme.colors.text.white}
+            color={theme.colors.text.inverse}
           />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Settings</Text>
@@ -54,7 +60,16 @@ export default function SettingsScreen() {
             />
           </View>
           <View style={styles.optionRow}>
-            <Text style={styles.optionLabel}>Theme</Text>
+            <View style={styles.iconLabel}>
+              <View
+                style={[
+                  styles.iconCircle,
+                  { backgroundColor: theme.colors.primary },
+                ]}
+              />
+              <Text style={styles.optionLabel}>Theme</Text>
+            </View>
+
             <Menu
               visible={menuVisible}
               onDismiss={() => setMenuVisible(false)}
@@ -63,12 +78,14 @@ export default function SettingsScreen() {
                   {selectedThemeLabel}
                 </Button>
               }
-              contentStyle={{ backgroundColor: theme.colors.card }}
+              contentStyle={{ backgroundColor: theme.colors.surface }}
             >
               <Menu.Item
                 title="Catpuccini"
                 onPress={() => setMenuVisible(false)}
-                titleStyle={{ color: theme.colors.text.primary }}
+                titleStyle={{
+                  color: theme.colors.text.primary,
+                }}
               />
             </Menu>
           </View>
@@ -99,10 +116,10 @@ const styles = StyleSheet.create((t) => ({
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 1,
-    borderColor: t.colors.highlight,
+    borderColor: t.colors.border,
   },
   headerTitle: {
-    color: t.colors.text.white,
+    color: t.colors.text.inverse,
     ...t.typography.h2,
     fontSize: 18,
     fontWeight: "600",
@@ -121,7 +138,7 @@ const styles = StyleSheet.create((t) => ({
     ...t.typography.caption,
   },
   card: {
-    backgroundColor: t.colors.card,
+    backgroundColor: t.colors.surface,
     borderRadius: t.borderRadius.lg,
     borderWidth: 1,
     borderColor: t.colors.border,
@@ -138,16 +155,16 @@ const styles = StyleSheet.create((t) => ({
     color: t.colors.text.primary,
     ...t.typography.body,
   },
-  optionPill: {
-    borderRadius: t.borderRadius.full,
-    paddingHorizontal: t.spacing.md,
-    paddingVertical: t.spacing.xs,
-    backgroundColor: t.colors.button.primary,
-    borderWidth: 1,
-    borderColor: t.colors.button.border,
+  iconLabel: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: t.spacing.sm,
   },
-  optionPillText: {
-    color: t.colors.button.text,
-    fontWeight: "600",
+  iconCircle: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: t.colors.border,
   },
 }));

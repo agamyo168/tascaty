@@ -113,7 +113,7 @@ const styles = StyleSheet.create((t) => ({
   },
 
   buttonText: {
-    color: t.colors.text.white,
+    color: t.colors.text.inverse,
     fontSize: 16,
     fontWeight: "600",
   },

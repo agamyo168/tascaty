@@ -7,6 +7,7 @@
     "scheme": "tascaty",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "icon": "./assets/icon.png",
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
@@ -14,7 +15,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/logo.png",
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#00B4D8"
       },
       "package": "com.anonymous.tascaty"
@@ -27,9 +28,12 @@
       [
         "expo-splash-screen",
         {
+          "backgroundColor": "#eff1f5",
           "image": "./assets/logo.png",
-          "resizeMode": "contain",
-          "backgroundColor": "#00B4D8"
+          "dark": {
+            "image": "./assets/logo.png",
+            "backgroundColor": "#1e1e2e"
+          }
         }
       ],
       "expo-sqlite"

@@ -44,13 +44,12 @@ export const mochaTheme = {
     card: "#45475a",
     text: {
       primary: "#cdd6f4",
-      secondary: "#a6adc8",
-      inverse: "#1e1e2e",
-      white: "#ffffff",
+      secondary: "#bac2de",
+      inverse: "#fff",
     },
     primary: "#cba6f7",
     secondary: "#f38ba8",
-    border: "#45475a",
+    border: "#9399b2",
     highlight: "#89b4fa",
     button: {
       primary: "#cba6f7",
@@ -73,13 +72,13 @@ export const latteTheme = {
     card: "#ccd0da",
     text: {
       primary: "#4c4f69",
-      secondary: "#6c6f85",
+      secondary: "#5c5f77",
+
       inverse: "#eff1f5",
-      white: "#000000",
     },
     primary: "#cba6f7",
     secondary: "#f38ba8",
-    border: "#ccd0da",
+    border: "#7c7f93",
     highlight: "#89b4fa",
     button: {
       primary: "#cba6f7",

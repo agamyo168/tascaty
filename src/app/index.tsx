@@ -5,6 +5,7 @@ import useTask from "@/src/hooks/tasks/useTask";
 import { useSnackbar } from "@/src/hooks/useSnackbar";
 import Feather from "@expo/vector-icons/Feather";
 import { useRouter } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
 import {
   Keyboard,
@@ -18,7 +19,7 @@ import {
   ScrollView,
 } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { StyleSheet } from "react-native-unistyles";
+import { StyleSheet, useUnistyles } from "react-native-unistyles";
 
 export interface TaskItem {
   title: string;
@@ -81,83 +82,12 @@ const HomeScreen = () => {
     month: "long",
     day: "2-digit",
   });
-  const styles = StyleSheet.create((theme) => ({
-    container: {
-      flex: 1,
-      paddingBottom: bottom,
-      backgroundColor: theme.colors.background,
-    },
-
-    header: {
-      backgroundColor: theme.colors.header,
-      paddingHorizontal: 20,
-      paddingTop: 72,
-      paddingBottom: 12,
-    },
-    headerDate: {
-      color: theme.colors.text.secondary,
-      ...theme.typography.caption,
-      opacity: 0.9,
-      marginBottom: 6,
-    },
-    headerTitle: {
-      color: theme.colors.text.white,
-      ...theme.typography.h2,
-      flex: 1,
-    },
-    headerTitleRow: {
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "space-between",
-      width: "100%",
-    },
-    searchInput: {
-      alignSelf: "stretch",
-      marginHorizontal: 20,
-      backgroundColor: theme.colors.background,
-      color: theme.colors.text.primary,
-      borderRadius: 12,
-      borderWidth: 1,
-      padding: 12,
-      fontSize: 16,
-      marginTop: 16,
-      borderColor: theme.colors.border,
-    },
-    scrollContainer: {
-      paddingBottom: 30,
-    },
-    tasksWrapper: {
-      paddingHorizontal: 20,
-      marginTop: 20,
-    },
-    sectionTitle: {
-      color: theme.colors.text.primary,
-      ...theme.typography.h2,
-      marginBottom: 20,
-    },
-    addBtnWrapper: {
-      position: "absolute",
-      right: 10,
-      bottom: 20,
-    },
-    addBtn: {
-      borderColor: theme.colors.border,
-      backgroundColor: theme.colors.primary,
-      borderRadius: 100,
-      paddingHorizontal: 12,
-      paddingVertical: 10,
-      width: 56,
-      height: 56,
-      alignItems: "center",
-      justifyContent: "center",
-      shadowColor: "#000",
-      shadowOpacity: 0.2,
-      shadowRadius: 6,
-      shadowOffset: { width: 0, height: 3 },
-    },
-  }));
+  const { theme } = useUnistyles();
   return (
-    <View style={styles.container}>
+    <View style={styles.container(bottom)}>
+      <StatusBar
+        style={theme.colors.background === "#1e1e2e" ? "light" : "dark"}
+      />
       <View style={styles.header}>
         <Text style={styles.headerDate}>{formattedDate}</Text>
         <View style={styles.headerTitleRow}>
@@ -217,5 +147,77 @@ const HomeScreen = () => {
     </View>
   );
 };
+const styles = StyleSheet.create((theme) => ({
+  container: (bottom: number) => ({
+    flex: 1,
+    paddingBottom: bottom,
+    backgroundColor: theme.colors.background,
+  }),
 
+  header: {
+    backgroundColor: theme.colors.header,
+    paddingHorizontal: 20,
+    paddingTop: 72,
+    paddingBottom: 12,
+  },
+  headerDate: {
+    color: theme.colors.text.inverse,
+    ...theme.typography.caption,
+    opacity: 0.9,
+    marginBottom: 6,
+  },
+  headerTitle: {
+    color: theme.colors.text.inverse,
+    ...theme.typography.h2,
+    flex: 1,
+  },
+  headerTitleRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "100%",
+  },
+  searchInput: {
+    alignSelf: "stretch",
+    marginHorizontal: 20,
+    backgroundColor: theme.colors.background,
+    color: theme.colors.text.primary,
+    borderRadius: 12,
+    padding: 12,
+    fontSize: 16,
+    marginTop: 16,
+  },
+  scrollContainer: {
+    paddingBottom: 30,
+  },
+  tasksWrapper: {
+    paddingHorizontal: 20,
+    marginTop: 20,
+  },
+  sectionTitle: {
+    color: theme.colors.text.primary,
+    ...theme.typography.h2,
+    marginBottom: 20,
+  },
+  addBtnWrapper: {
+    position: "absolute",
+    right: 10,
+    bottom: 20,
+  },
+  addBtn: {
+    borderColor: theme.colors.border,
+    backgroundColor: theme.colors.primary,
+    borderRadius: 100,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    width: 56,
+    height: 56,
+    alignItems: "center",
+    justifyContent: "center",
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 3 },
+  },
+}));
 export default HomeScreen;
