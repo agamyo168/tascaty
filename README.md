@@ -4,7 +4,7 @@
 ---
 
 <div align="center">
-<img alt="Logo Banner" src="assets/banner.png"/>
+<img alt="Logo Banner" src="assets/readme/banner.png"/>
 </div>
 
 ---
@@ -22,6 +22,37 @@ Tascaty is a modern, cross-platform mobile application built with React Native a
 - **Database**: SQLite with Drizzle ORM
 - **Styling**: React Native Unistyles
 - **Build Tool**: Expo
+
+## Themes
+
+- **Current**: Catpuccini theme (light/dark variants integrated across the app UI).
+- **Future**: Supports adding more themes in the future.
+
+## Preview:
+
+### **Adding a task**:
+
+<video width="320" autoplay loop muted>
+ <source src="assets/readme/videos/add_task.mp4"/>
+</video>
+
+### **Marking a task as completed**:
+
+<video width="320" autoplay loop muted>
+ <source src="assets/readme/videos/mark_task.mp4"/>
+</video>
+
+### **Deleting a task**:
+
+<video width="320" autoplay loop muted>
+ <source src="assets/readme/videos/delete_task.mp4"/>
+</video>
+
+### **Search a task**:
+
+<video width="320" autoplay loop muted>
+ <source src="assets/readme/videos/search_task.mp4"/>
+</video>
 
 ## Getting Started
 
@@ -66,7 +97,6 @@ src/
 ├── app/                 # Main app screens and navigation
 ├── components/          # Reusable UI components
 │   ├── common/          # Common components
-│   ├── navigation/      # Navigation components
 │   └── tasks/           # Task-related components
 ├── db/                  # Database configuration and models
 ├── hooks/               # Custom React hooks
