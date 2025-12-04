@@ -1,22 +1,112 @@
-# Task App
+<h1 align="center">Tascaty</h1>
+<h3 align="center">Simple, styled and fast task manager.</h3>
 
-## Tech Stack:
+---
 
-- React-native
+<div align="center">
+<img alt="Logo Banner" src="assets/banner.png"/>
+</div>
 
-## Deadline: 4-12-2025
+---
 
-## Basic features:
+# Tascaty - Task Management App
 
-- ● Add Task: Users can add a new task with a brief description.
-- ● Mark Task as Complete: Users can mark tasks as complete, which visually
-  distinguishes them from incomplete tasks.
-- ● Delete Task: Users can delete a task from the list.
-- ● Task List: Display all tasks in a list view, showing both complete and
-  incomplete tasks.
+Tascaty is a modern, cross-platform mobile application built with React Native and Expo, designed to help you manage your tasks efficiently. With a clean and intuitive interface, Tascaty makes it easy to organize your daily activities, track progress, and stay productive.
 
-## Third-party libraries:
+## Features
 
-- @gorhom/bottom-sheet: for bottom sheet.
-- drizzle-orm: for sqlite database.
-- react-native-paper: for snackbar.
+- **Task Management**
+
+  - Add, edit, and delete tasks
+  - Mark tasks as complete/incomplete
+  - Organize tasks in a clean, scrollable list
+  - Visual distinction between complete and incomplete tasks
+
+- **User Experience**
+
+  - Smooth animations and transitions
+  - Haptic feedback for actions
+  - Bottom sheet for task details
+  - Responsive design for all screen sizes
+
+- **Data Persistence**
+  - Local SQLite database using Drizzle ORM
+  - Offline-first approach
+  - Reliable data synchronization
+
+## Tech Stack
+
+- **Frontend**: React Native with TypeScript
+- **Navigation**: Expo Router
+- **State Management**: React Hooks
+- **UI Components**: React Native Paper, @gorhom/bottom-sheet
+- **Database**: SQLite with Drizzle ORM
+- **Styling**: React Native Unistyles
+- **Build Tool**: Expo
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v16 or later)
+- npm or yarn
+- Expo CLI (`npm install -g expo-cli`)
+- iOS Simulator (for iOS development) or Android Studio (for Android development)
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/agamyo168/tascaty.git
+   cd tascaty
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. Start the development server:
+
+   ```bash
+   npx expo start
+   ```
+
+4. Run on your device/emulator:
+   - Press `i` for iOS simulator
+   - Press `a` for Android emulator
+   - Scan the QR code with Expo Go app (on physical device)
+
+## Screenshots
+
+_(Screenshots will be added after UI implementation)_
+
+## Project Structure
+
+```
+src/
+├── app/                 # Main app screens and navigation
+├── components/          # Reusable UI components
+│   ├── common/          # Common components
+│   ├── navigation/      # Navigation components
+│   └── tasks/           # Task-related components
+├── db/                  # Database configuration and models
+├── hooks/               # Custom React hooks
+└── style/               # Global styles and themes
+```
+
+## Third-party Libraries
+
+- **@gorhom/bottom-sheet**: Interactive bottom sheets for task details
+- **drizzle-orm**: Type-safe SQL query builder and ORM
+- **react-native-paper**: Material Design components
+- **react-native-reanimated**: Smooth animations
+- **expo-sqlite**: SQLite database integration
+- **react-native-gesture-handler**: Native gestures
+- **react-native-safe-area-context**: Safe area handling
+
+## Acknowledgments

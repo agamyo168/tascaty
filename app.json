@@ -1,25 +1,39 @@
 {
   "expo": {
-    "name": "mobile-task-app",
-    "slug": "mobile-task-app",
+    "name": "Tascaty",
+    "slug": "tascaty",
     "version": "1.0.0",
     "orientation": "portrait",
-    "scheme": "mobiletaskapp",
+    "scheme": "tascaty",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.mobiletaskapp"
+      "bundleIdentifier": "com.anonymous.tascaty"
     },
     "android": {
-      "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false,
-      "package": "com.anonymous.mobiletaskapp"
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/logo.png",
+        "backgroundColor": "#00B4D8"
+      },
+      "package": "com.anonymous.tascaty"
     },
     "web": {
       "output": "static"
     },
-    "plugins": ["expo-router", ["expo-splash-screen"], "expo-sqlite"],
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/logo.png",
+          "resizeMode": "contain",
+          "backgroundColor": "#00B4D8"
+        }
+      ],
+      "expo-sqlite"
+    ],
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
