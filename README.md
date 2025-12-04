@@ -28,23 +28,110 @@ Tascaty is a modern, cross-platform mobile application built with React Native a
 - **Current**: Catpuccini theme (light/dark variants integrated across the app UI).
 - **Future**: Supports adding more themes in the future.
 
+### Splash screen
+
+<div style="display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px;">
+   <div style="flex: 1; min-width: 300px; text-align: center;">
+      <img
+      src="./assets/images/splash_light.png" 
+      alt="Splash Light Screenshot"
+      style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"
+      />
+      <p>
+    Splash Light
+      </p>
+   </div>
+   <div style="flex: 1; min-width: 300px; text-align: center;">
+      <img 
+      src="./assets/images/splash_dark.png"
+      alt="Splash Dark Screenshot"
+      style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"
+      />
+      <p>
+         Splash Dark
+      </p>
+   </div>
+</div>
+
+### Home screen
+
+<div style="display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px;">
+   <div style="flex: 1; min-width: 300px; text-align: center;">
+      <img
+      src="./assets/images/home_light.png" 
+      alt="Home Screen Light"
+      style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"
+      />
+      <p>
+    Home Screen Light
+      </p>
+   </div>
+   <div style="flex: 1; min-width: 300px; text-align: center;">
+      <img 
+      src="./assets/images/home_dark.png"
+      alt="Home Screen Dark"
+      style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"
+      />
+      <p>
+         Home Screen Dark
+      </p>
+   </div>
+</div>
+
+### Settings screen
+
+<div style="display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px;">
+   <div style="flex: 1; min-width: 300px; text-align: center;">
+      <img
+      src="./assets/images/settings_light.png" 
+      alt="Settings Screen Light"
+      style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"
+      />
+      <p>
+         Settings Screen Light
+      </p>
+   </div>
+   <div style="flex: 1; min-width: 300px; text-align: center;">
+      <img 
+      src="./assets/images/settings_dark.png"
+      alt="Settings Screen Dark"
+      style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"
+      />
+      <p>
+         Settings Screen Dark
+      </p>
+   </div>
+</div>
+
 ## Preview:
 
 ### **Adding a task**:
 
+<details>
+<summary>Click to view video preview</summary>
 <img src="assets/readme/gifs/add_task.gif" alt="Adding a task video preview" width="320" />
+</details>
 
 ### **Marking a task as completed**:
 
+<details>
+<summary>Click to view video preview</summary>
 <img src="assets/readme/gifs/mark_task.gif" alt="Marking a task as completed video preview" width="320" />
+</details>
 
 ### **Deleting a task**:
 
+<details>
+<summary>Click to view video preview</summary>
 <img src="assets/readme/gifs/delete_task.gif" alt="Deleting a task video preview" width="320" />
+</details>
 
 ### **Search a task**:
 
+<details>
+<summary>Click to view video preview</summary>
 <img src="assets/readme/gifs/search_task.gif" alt="Search a task video preview" width="320" />
+</details>
 
 ## Getting Started
 
