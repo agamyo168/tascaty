@@ -32,27 +32,19 @@ Tascaty is a modern, cross-platform mobile application built with React Native a
 
 ### **Adding a task**:
 
-<video width="320" autoplay loop muted>
- <source src="assets/readme/videos/add_task.mp4"/>
-</video>
+<img src="assets/readme/gifs/add_task.gif" alt="Adding a task video preview" width="320" />
 
 ### **Marking a task as completed**:
 
-<video width="320" autoplay loop muted>
- <source src="assets/readme/videos/mark_task.mp4"/>
-</video>
+<img src="assets/readme/gifs/mark_task.gif" alt="Marking a task as completed video preview" width="320" />
 
 ### **Deleting a task**:
 
-<video width="320" autoplay loop muted>
- <source src="assets/readme/videos/delete_task.mp4"/>
-</video>
+<img src="assets/readme/gifs/delete_task.gif" alt="Deleting a task video preview" width="320" />
 
 ### **Search a task**:
 
-<video width="320" autoplay loop muted>
- <source src="assets/readme/videos/search_task.mp4"/>
-</video>
+<img src="assets/readme/gifs/search_task.gif" alt="Search a task video preview" width="320" />
 
 ## Getting Started
 
@@ -86,10 +78,6 @@ Tascaty is a modern, cross-platform mobile application built with React Native a
    npx expo run:android
    ```
 
-## Screenshots
-
-_(Screenshots will be added after UI implementation)_
-
 ## Project Structure
 
 ```
@@ -113,6 +101,10 @@ src/
 - **react-native-gesture-handler**: Native gestures
 - **react-native-safe-area-context**: Safe area handling
 - **react-native-splash-screen**: Splash screen
+
+## Download:
+
+- [Android](https://drive.google.com/file/d/1sOW5GjUsfOjxiB5BvD69BdM_lj6M1vxA/view?usp=drivesdk)
 
 ## Acknowledgments
 
