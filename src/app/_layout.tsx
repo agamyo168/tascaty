@@ -9,8 +9,9 @@ import "expo-router/entry";
 
 import { SQLiteProvider, openDatabaseSync } from "expo-sqlite";
 import { Suspense } from "react";
-import { ActivityIndicator, StyleSheet, View } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 import { Provider as PaperProvider } from "react-native-paper";
+import { StyleSheet } from "react-native-unistyles";
 
 export const DATABASE_NAME = "tasks";
 
@@ -19,9 +20,9 @@ export default function RootLayout() {
   const db = drizzle(expoDb);
   useMigrations(db, migrations);
 
-  const styles = StyleSheet.create({
+  const styles = StyleSheet.create((t) => ({
     container: { flex: 1 },
-  });
+  }));
 
   return (
     <Suspense fallback={<ActivityIndicator size="large" />}>

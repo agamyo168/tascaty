@@ -1,9 +1,10 @@
 import { TaskItem } from "@/src/app";
 import Feather from "@expo/vector-icons/Feather";
 import React, { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
 import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
+import { StyleSheet } from "react-native-unistyles";
 
 interface TaskProps {
   task: TaskItem;
@@ -14,11 +15,11 @@ interface TaskProps {
 }
 const Task = ({ task, done, onPress, handleDelete }: TaskProps) => {
   const [expanded, setExpanded] = useState(false);
-  const styles = StyleSheet.create({
+  const styles = StyleSheet.create((theme) => ({
     itemWrapper: {
       padding: 15,
       borderRadius: 20,
-      backgroundColor: "#313244",
+      backgroundColor: theme.colors.card,
       marginBottom: 20,
       justifyContent: "center",
     },
@@ -28,13 +29,13 @@ const Task = ({ task, done, onPress, handleDelete }: TaskProps) => {
       flexWrap: "wrap",
     },
     itemText: {
-      color: "#cdd6f4",
+      color: theme.colors.text.primary,
       fontWeight: 600,
       textDecorationLine: done ? "line-through" : "none",
       fontSize: 16,
     },
     itemDescription: {
-      color: "#bac2de",
+      color: theme.colors.text.secondary,
       fontWeight: 600,
       fontSize: 12,
     },
@@ -43,7 +44,7 @@ const Task = ({ task, done, onPress, handleDelete }: TaskProps) => {
       maxWidth: "80%",
     },
     circle: {
-      borderColor: "#838390",
+      borderColor: theme.colors.border,
       backgroundColor: done ? "#a6e3a1" : "transparent",
       borderRadius: 100,
       borderWidth: 3,
@@ -51,16 +52,16 @@ const Task = ({ task, done, onPress, handleDelete }: TaskProps) => {
       padding: 13,
     },
     deleteAction: {
-      backgroundColor: "#f38ba8",
+      backgroundColor: theme.colors.error,
       borderRadius: 20,
       padding: 10,
       marginBottom: 20,
       marginRight: 15,
     },
     deleteText: {
-      color: "#1E1E2E",
+      color: theme.colors.background,
     },
-  });
+  }));
   const renderRightActions = () => {
     return (
       <View

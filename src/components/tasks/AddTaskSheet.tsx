@@ -3,7 +3,8 @@ import BottomSheet, {
   BottomSheetView,
 } from "@gorhom/bottom-sheet";
 import React, { useMemo, useRef, useState } from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
+import { StyleSheet } from "react-native-unistyles";
 
 type Props = {
   onAddTask: (task: { title: string; description: string }) => void;
@@ -35,8 +36,8 @@ export default function AddTaskContent({
       enablePanDownToClose={true}
       onClose={toggleBottomSheet}
       index={visible ? 0 : -1}
-      backgroundStyle={{ backgroundColor: "#181825" }}
-      handleIndicatorStyle={{ backgroundColor: "#a6adc8" }}
+      backgroundStyle={styles.botomSheetStyle}
+      handleIndicatorStyle={styles.handleIndicatorStyle}
     >
       <BottomSheetView style={styles.container}>
         <Text style={styles.label}>Title</Text>
@@ -72,34 +73,39 @@ export default function AddTaskContent({
   );
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create((t) => ({
   container: {
     padding: 18,
     backgroundColor: "transparent",
   },
 
   label: {
-    color: "#cdd6f4",
+    color: t.colors.text.primary,
     fontSize: 14,
     marginBottom: 6,
     marginTop: 10,
   },
-
+  botomSheetStyle: {
+    backgroundColor: t.colors.surface,
+  },
+  handleIndicatorStyle: {
+    backgroundColor: t.colors.highlight,
+  },
   input: {
     alignSelf: "stretch",
     marginHorizontal: 12,
-    backgroundColor: "#313244",
-    color: "#cdd6f4",
+    backgroundColor: t.colors.background,
+    color: t.colors.text.primary,
     borderRadius: 12,
     padding: 12,
     fontSize: 16,
     marginBottom: 10,
     borderWidth: 1,
-    borderColor: "#45475a",
+    borderColor: t.colors.border,
   },
 
   buttonContainer: {
-    backgroundColor: "#cba6f7",
+    backgroundColor: t.colors.primary,
     paddingVertical: 12,
     borderRadius: 12,
     alignItems: "center",
@@ -107,8 +113,8 @@ const styles = StyleSheet.create({
   },
 
   buttonText: {
-    color: "#1e1e2e",
+    color: t.colors.text.white,
     fontSize: 16,
     fontWeight: "600",
   },
-});
+}));

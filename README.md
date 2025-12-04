@@ -1,5 +1,5 @@
 <h1 align="center">Tascaty</h1>
-<h3 align="center">Simple, styled and fast task manager.</h3>
+<h3 align="center">Simple, fast and styled task manager.</h3>
 
 ---
 
@@ -12,27 +12,6 @@
 # Tascaty - Task Management App
 
 Tascaty is a modern, cross-platform mobile application built with React Native and Expo, designed to help you manage your tasks efficiently. With a clean and intuitive interface, Tascaty makes it easy to organize your daily activities, track progress, and stay productive.
-
-## Features
-
-- **Task Management**
-
-  - Add, edit, and delete tasks
-  - Mark tasks as complete/incomplete
-  - Organize tasks in a clean, scrollable list
-  - Visual distinction between complete and incomplete tasks
-
-- **User Experience**
-
-  - Smooth animations and transitions
-  - Haptic feedback for actions
-  - Bottom sheet for task details
-  - Responsive design for all screen sizes
-
-- **Data Persistence**
-  - Local SQLite database using Drizzle ORM
-  - Offline-first approach
-  - Reliable data synchronization
 
 ## Tech Stack
 
@@ -110,3 +89,5 @@ src/
 - **react-native-safe-area-context**: Safe area handling
 
 ## Acknowledgments
+
+- Black-cat icon created by [BZZRINCANTATION](https://www.flaticon.com/free-icons/black-cat)

@@ -8,7 +8,6 @@ import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
 import {
   Keyboard,
-  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
@@ -19,6 +18,7 @@ import {
   ScrollView,
 } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { StyleSheet } from "react-native-unistyles";
 
 export interface TaskItem {
   title: string;
@@ -81,29 +81,28 @@ const HomeScreen = () => {
     month: "long",
     day: "2-digit",
   });
-  const styles = StyleSheet.create({
+  const styles = StyleSheet.create((theme) => ({
     container: {
       flex: 1,
-      backgroundColor: "#1e1e2e",
       paddingBottom: bottom,
+      backgroundColor: theme.colors.background,
     },
 
     header: {
-      backgroundColor: "#6c4ab6",
+      backgroundColor: theme.colors.header,
       paddingHorizontal: 20,
       paddingTop: 72,
       paddingBottom: 12,
     },
     headerDate: {
-      color: "#ede9fe",
+      color: theme.colors.text.secondary,
+      ...theme.typography.caption,
       opacity: 0.9,
-      fontSize: 14,
       marginBottom: 6,
     },
     headerTitle: {
-      color: "#ffffff",
-      fontSize: 24,
-      fontWeight: "bold",
+      color: theme.colors.text.white,
+      ...theme.typography.h2,
       flex: 1,
     },
     headerTitleRow: {
@@ -115,14 +114,14 @@ const HomeScreen = () => {
     searchInput: {
       alignSelf: "stretch",
       marginHorizontal: 20,
-      backgroundColor: "#313244",
-      color: "#cdd6f4",
+      backgroundColor: theme.colors.background,
+      color: theme.colors.text.primary,
       borderRadius: 12,
+      borderWidth: 1,
       padding: 12,
       fontSize: 16,
       marginTop: 16,
-      borderWidth: 1,
-      borderColor: "#45475a",
+      borderColor: theme.colors.border,
     },
     scrollContainer: {
       paddingBottom: 30,
@@ -132,9 +131,8 @@ const HomeScreen = () => {
       marginTop: 20,
     },
     sectionTitle: {
-      color: "#cdd6f4",
-      fontSize: 24,
-      fontWeight: "bold",
+      color: theme.colors.text.primary,
+      ...theme.typography.h2,
       marginBottom: 20,
     },
     addBtnWrapper: {
@@ -143,8 +141,8 @@ const HomeScreen = () => {
       bottom: 20,
     },
     addBtn: {
-      borderColor: "#838390",
-      backgroundColor: "#cba6f7",
+      borderColor: theme.colors.border,
+      backgroundColor: theme.colors.primary,
       borderRadius: 100,
       paddingHorizontal: 12,
       paddingVertical: 10,
@@ -157,7 +155,7 @@ const HomeScreen = () => {
       shadowRadius: 6,
       shadowOffset: { width: 0, height: 3 },
     },
-  });
+  }));
   return (
     <View style={styles.container}>
       <View style={styles.header}>
